@@ -90,6 +90,10 @@
 			// To allow multi Strategy Room tabs
 			window.open("../strategy/strategy.html", "kc3kai_strategy");
 		});
+
+		$("#strategy2").on('click', function(){
+			window.open("../strategy2/strategy.html", "kc3kai_strategy2");
+		});
 		
 		// Settings
 		$("#settings").on('click', function(){

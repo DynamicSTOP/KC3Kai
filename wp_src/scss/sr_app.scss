@@ -1,0 +1,12 @@
+@import "mixins";
+@import "navbar";
+@import "profile";
+body {
+  background: #414141;
+  margin: 0;
+}
+
+article {
+  margin-top: 50px;
+  padding: 10px 25px;
+}
