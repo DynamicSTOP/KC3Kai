@@ -1,5 +1,5 @@
 <template>
-    <div class="sr_app">
+    <div class="sr_app" :class="{limited:false}">
         <nav-bar></nav-bar>
         <article>
             <router-view/>

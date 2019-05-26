@@ -2,23 +2,14 @@
 
 $navbar-height: 50px;
 .navbar {
-  height: $navbar-height;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   box-shadow: #000 0 2px 6px 3px;
-  padding-left: 25px;
   background: linear-gradient(#292929, #101010);
-  @include flex-row();
-
+  @include flex-col();
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+  
   &--menu {
-    border-left: 1px solid #000;
     position: relative;
-
-    &:last-child {
-      border-right: 1px solid #000;
-    }
 
     &:hover {
       background: linear-gradient(#515151, #101010);;
@@ -38,13 +29,13 @@ $navbar-height: 50px;
     @include flex-col();
     position: absolute;
     display: none;
-    top: $navbar-height;
-    left: 0;
+    left: 100%;
+    top:0;
     background: #292929;
     border: 1px solid #000;
     box-shadow: #000 0 2px 10px 2px;
     border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
   }
 
   &--menu:hover &--submenu {
@@ -66,9 +57,8 @@ $navbar-height: 50px;
     }
 
     &:last-child {
-      border-bottom-width: 0;
       border-bottom-right-radius: 5px;
-      border-bottom-left-radius: 5px;
+      border-top-right-radius: 5px;
     }
   }
 }
