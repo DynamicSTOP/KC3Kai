@@ -38,7 +38,7 @@ module.exports = {
     ]
   },
   output: {
-    path: path.resolve(__dirname, 'src', 'pages', 'strategy2', 'assets'),
+    path: path.resolve(__dirname, 'src', 'pages', 'strategyEx', 'assets'),
     filename: "sr_app.js"
   },
   plugins: [

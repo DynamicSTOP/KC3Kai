@@ -4,7 +4,7 @@ mainConfig = Object.assign(mainConfig, {
   mode: 'development',
   watch: true,
   watchOptions: {
-    ignored: ['src/pages/strategy2/assets/*', '/node_modules/']
+    ignored: ['src/pages/strategyEx/assets/*', '/node_modules/']
   }
 });
 
