@@ -91,7 +91,7 @@
 			window.open("../strategy/strategy.html", "kc3kai_strategy");
 		});
 
-		$("#strategy2").on('click', function(){
+		$("#strategyEx").on('click', function(){
 			window.open("../strategyEx/strategy.html", "kc3kai_strategyEx");
 		});
 
