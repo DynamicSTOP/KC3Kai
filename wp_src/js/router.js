@@ -5,9 +5,14 @@ Vue.use(Router);
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'sr_profile',
-      component: require('@/js/components/Profile').default
+      path: '/sr_player_profile',
+      name: 'sr_player_profile',
+      component: require('@/js/components/Player/Profile').default
+    },
+    {
+      path: '/sr_ships_shipsList',
+      name: 'sr_ships_shipsList',
+      component: require('@/js/components/Ships/ShipsList').default
     },
     {
       path: '/dummy',
@@ -16,7 +21,7 @@ export default new Router({
     },
     {
       path: '*',
-      redirect: '/' 
+      redirect: '/sr_player_profile'
     }
   ]
 })

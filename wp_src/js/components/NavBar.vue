@@ -1,9 +1,9 @@
 <template>
     <nav class="navbar">
-        <div class="navbar--menu">
+        <div class="navbar--menu" :class="{active: $route.name.startsWith('sr_player')}">
             <span>Player</span>
             <div class="navbar--submenu">
-                <router-link class="navbar--item" :to="{name:'sr_profile'}" tag="div">Profile</router-link>
+                <router-link class="navbar--item" :to="{name:'sr_player_profile'}" tag="div">Profile</router-link>
                 <router-link class="navbar--item" :to="{name:'sr_dummy'}" tag="div">Screenshots</router-link>
                 <router-link class="navbar--item" :to="{name:'sr_dummy'}" tag="div">Consumables</router-link>
                 <router-link class="navbar--item" :to="{name:'sr_dummy'}" tag="div">Experience</router-link>
@@ -12,10 +12,10 @@
                 <router-link class="navbar--item" :to="{name:'sr_dummy'}" tag="div">Data Backup</router-link>
             </div>
         </div>
-        <div class="navbar--menu">
+        <div class="navbar--menu" :class="{active: $route.name.startsWith('sr_ships')}">
             <span>Ships</span>
             <div class="navbar--submenu">
-                <router-link class="navbar--item" :to="{name:'sr_dummy'}" tag="div">Ship List</router-link>
+                <router-link class="navbar--item" :to="{name:'sr_ships_shipsList'}" tag="div">Ship List</router-link>
                 <router-link class="navbar--item" :to="{name:'sr_dummy'}" tag="div">Construction</router-link>
                 <router-link class="navbar--item" :to="{name:'sr_dummy'}" tag="div">LSC</router-link>
                 <router-link class="navbar--item" :to="{name:'sr_dummy'}" tag="div">Docking</router-link>
@@ -90,6 +90,6 @@
 
 <script>
     export default {
-      name: 'SRNavbar'
+        name: 'SRNavbar'
     }
 </script>

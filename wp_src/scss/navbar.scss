@@ -7,11 +7,11 @@ $navbar-height: 50px;
   margin-right:15px;
   background: linear-gradient(#e6e6e6 450px, #595959);
   @include flex-col();
-  
+
   &--menu {
     position: relative;
 
-    &:hover {
+    &.active, &:hover {
       > span {
         @include text-shadow(#f5ce04)
       }
@@ -50,6 +50,7 @@ $navbar-height: 50px;
 
     &.router-link-active {
       background: #5c5c5c;
+      @include text-shadow(#f5ce04)
     }
 
     &:hover {

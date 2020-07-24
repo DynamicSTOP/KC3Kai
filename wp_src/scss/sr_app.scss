@@ -1,6 +1,7 @@
 @import "mixins";
 @import "navbar";
 @import "profile";
+@import "ships";
 
 html{
   height:100%;
@@ -21,7 +22,7 @@ article {
   @include flex-row();
   width:100%;
   &.limited{
-    width:1200px;  
+    width:1200px;
   }
   margin: 0 auto;
   height:100%;
