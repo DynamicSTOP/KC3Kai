@@ -89,7 +89,9 @@
       text-align: center;
     }
 
-    color: #ccc;
+    color: var(--color-complement-1);
+    font-weight: 600;
+    @include text-shadow();
 
     display: flex;
     flex-direction: column;
@@ -100,18 +102,23 @@
 
       &.header{
         user-select: none;
-        background: rgba(255,255,255,0.1);
+        background: var(--color-complement-3);
+        > div{
+          font-size: 15px;
+        }
+
         .active{
-          background: #333;
+          background: var(--color-complement-0);
         }
       }
       white-space: nowrap;
-      >div{
+      > div{
         white-space: nowrap;
         margin: auto;
         display: inline-flex;
         justify-content: center;
         line-height: 25px;
+        font-size: 13px;
       }
       display: flex;
       flex-direction: row;
@@ -125,37 +132,38 @@
           object-fit: cover;
         }
       }
+
+      background: var(--color-primary-0);
       &.odd{
         cursor:default;
-        background: rgba(0, 0, 0, 0.3);
+        background: var(--color-primary-3);
       }
 
       &:not(.header):hover, &.header > div:not(.noHover):hover{
         cursor:pointer;
-        background: rgba(255,255,255,0.4);
-        color:#FFF;
+        background: var(--color-complement-0);
       }
 
       .slots {
         .slot,.extra{
           border-radius: 50%;
-          background: #ccc;
+          background: var(--color-complement-2);
+          color: var(--color-primary-4);
           width: 20px;
           height: 20px;
           line-height:20px;
           float:left;
           display: inline-block;
-          color:#000;
-          font-size:12px;
           text-align: center;
+          text-shadow: none;
         }
         .extra{
-          background: #299c13;
+          background: var(--color-secondary-1-0);
         }
       }
 
       .half.lk{
-        background:rgba(17, 99, 17, 0.42);
+        background: var(--color-secondary-1-2);
       }
 
       .max{
@@ -172,12 +180,11 @@
           background: #073e78;
         }
         &.lk{
-          background: #116311;
+          background: var(--color-secondary-1-0);
         }
       }
       .high {
-        background: #ffeb3b;
-        color: #000;
+        background: #beaf09;
       }
       :not(.num):not(.id):not(.name):not(.group):not(.slots){
         text-align: center;

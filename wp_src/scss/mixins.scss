@@ -10,13 +10,8 @@
   justify-content: flex-start;
 }
 
-@mixin text-shadow($color:#FFF, $shadow:#000) {
-  color: $color;
+@mixin text-shadow($shadow:#000) {
   text-shadow: 0 1px 1px $shadow, 0 -1px 1px $shadow, 1px 0 1px $shadow, -1px 0 1px $shadow;
-}
-
-@mixin text-shadow-black{
-  @include text-shadow(#FFF, #000)
 }
 
 .table {

@@ -54,6 +54,8 @@
 <script>
     import ShipListRow from "./ShipListRow";
 
+    let listener = null;
+
     const shipTypes = ["DE", "DD", "CL", "CLT", "CA", "CAV",
         "SS", "SSV", "FBB", "BB", "BBV", "CVL", "CV", "CVB",
         "AV", "AS", "AO", "LHA", "AR", "CT"];
@@ -63,6 +65,7 @@
         components: {ShipListRow},
         data() {
             return {
+                rawShips: '',
                 ships: [],
                 order: shipTypes.slice(),
                 typeSelected: shipTypes.slice(),
@@ -189,19 +192,42 @@
                     else this.sortByInverse = 1;
                 }
 
+            },
+            updateShips() {
+                if(this.rawShips === localStorage.ships) return;
+                this.rawShips = localStorage.ships;
+                KC3ShipManager.load();
+                this.ships = [];
+                for (let i in KC3ShipManager.list) {
+                    if (KC3ShipManager.list.hasOwnProperty(i) && i.startsWith('x')) {
+                        const ship = KC3ShipManager.list[i];
+                        ship.sortno = ship.master().api_sort_id;
+                        ship.stypem = ship.master().api_stype;
+                        ship.stype = KC3Meta.stype(ship.stypem);
+                        ship.stypen = shipTypes.indexOf(ship.stype);
+                        ship.night = ship.fp[0] + ship.tp[0];
+                        this.ships.push(ship);
+                    }
+                }
             }
         },
         mounted() {
-            for (let i in KC3ShipManager.list) {
-                if (KC3ShipManager.list.hasOwnProperty(i) && i.startsWith('x')) {
-                    const ship = KC3ShipManager.list[i];
-                    ship.sortno = ship.master().api_sort_id;
-                    ship.stypem = ship.master().api_stype;
-                    ship.stype = KC3Meta.stype(ship.stypem);
-                    ship.stypen = shipTypes.indexOf(ship.stype);
-                    ship.night = ship.fp[0] + ship.tp[0];
-                    this.ships.push(ship);
-                }
+            console.log('added');
+            if (listener) {
+                window.removeEventListener('storage', listener);
+                listener = false;
+                this.rawShips = '';
+            }
+            listener = this.updateShips.bind(this);
+            window.addEventListener('storage', listener);
+            listener();
+        },
+        beforeDestroy() {
+            console.log('removed');
+            if (listener) {
+                window.removeEventListener('storage', listener);
+                listener = false;
+                this.rawShips = '';
             }
         }
     }

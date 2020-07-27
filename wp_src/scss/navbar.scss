@@ -2,18 +2,20 @@
 
 $navbar-height: 50px;
 .navbar {
-  box-shadow: #232323 0 2px 6px 3px;
   font-weight: 600;
-  margin-right:15px;
-  background: linear-gradient(#e6e6e6 450px, #595959);
+  margin-right: 15px;
+  background: var(--color-primary-3);
   @include flex-col();
 
   &--menu {
     position: relative;
 
     &.active, &:hover {
+      background: var(--color-primary-0);
+
       > span {
-        @include text-shadow(#f5ce04)
+        color: var(--color-complement-1);
+        @include text-shadow();
       }
     }
 
@@ -21,19 +23,19 @@ $navbar-height: 50px;
     padding: 10px;
     line-height: 30px;
     font-size: 20px;
-    color:#1c1c1c;
+    color: var(--color-secondary-1-1);
+    @include text-shadow;
   }
 
   &--submenu {
     @include flex-col();
-    @include text-shadow-black;
+    @include text-shadow;
     position: absolute;
     display: none;
     left: 100%;
-    top:0;
-    background: linear-gradient(#e6e6e6, #6f6f6f);
-    border: 1px solid #000;
-    box-shadow: #000 2px 0 10px 1px;
+    top: 0;
+    background: var(--color-primary-3);
+    box-shadow: #000 4px 0 4px 2px;
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
     min-width: 175px;
@@ -46,20 +48,21 @@ $navbar-height: 50px;
   &--item {
     white-space: nowrap;
     padding: 2px 15px;
-    border-bottom: 1px solid #000;
+
+    &.router-link-active, &:hover {
+      background: var(--color-primary-0);
+      color: var(--color-complement-1);
+
+    }
 
     &.router-link-active {
-      background: #5c5c5c;
-      @include text-shadow(#f5ce04)
+      @include text-shadow;
     }
 
-    &:hover {
-      background: #515151;
-      color:#f5ce04;
-    }
-    &:first-child{
+    &:first-child {
       border-top-right-radius: 5px;
     }
+
     &:last-child {
       border-bottom-right-radius: 5px;
     }

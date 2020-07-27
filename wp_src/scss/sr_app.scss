@@ -1,6 +1,8 @@
+@import "palette";
 @import "mixins";
+
 @import "navbar";
-@import "profile";
+  @import "profile";
 @import "ships";
 
 html{
@@ -8,7 +10,7 @@ html{
 }
 
 body {
-  background: #414141;
+  background: var(--color-primary-4);
   margin: 0;
   height:100%;
 }
@@ -16,6 +18,8 @@ body {
 article {
   padding-left:10px;
   flex:1;
+  height:100%;
+  overflow: auto;
 }
 
 .sr_app{
