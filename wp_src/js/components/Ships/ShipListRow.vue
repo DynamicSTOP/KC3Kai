@@ -8,17 +8,17 @@
         <div class="lvl" :class="lvlClass">{{ship.level}}</div>
         <div class="lvl" :class="{high: ship.morale>49}">{{ship.morale}}</div>
         <div class="hp">{{ship.hp[0]}}</div>
-        <div class="fp" :class="{max:ship.fp[0]>=ship.fp[1]}">{{ship.fp[0]}}</div>
-        <div class="tp" :class="{max:ship.tp[0]>0 && ship.tp[0]>=ship[1]}">{{ship.tp[0] || ""}}</div>
-        <div class="aa" :class="{max:ship.aa[0]>=ship.aa[0]}">{{ship.aa[0]}}</div>
-        <div class="ar" :class="{max:ship.ar[0]>=ship.ar[1]}">{{ship.ar[0]}}</div>
-        <div class="as">{{ship.as[0] || ""}}</div>
-        <div class="ev">{{ship.ev[0]}}</div>
-        <div class="los">{{ship.ls[0]}}</div>
+        <div class="fp" :class="{max:ship.firepower>=ship.fp[1]}">{{ship.firepower || ""}}</div>
+        <div class="tp" :class="{max:ship.torpedo>0 && ship.torpedo>=ship.tp[1]}">{{ship.torpedo || ""}}</div>
+        <div class="aa" :class="{max:ship.antiair>0 && ship.antiair>=ship.aa[1]}">{{ship.antiair || ""}}</div>
+        <div class="ar" :class="{max:ship.armor>=ship.ar[1]}">{{ship.armor}}</div>
+        <div class="as">{{ship.antisub || ""}}</div>
+        <div class="ev">{{ship.evasion}}</div>
+        <div class="los">{{ship.levelofsight}}</div>
         <div class="lk" :class="{max:ship.lk[0]>=50,half:ship.lk[0]>=40}">{{ship.lk[0]}}</div>
         <div class="night">{{ship.night}}</div>
         <div class="slots">
-            <span class="slot" v-for="(slot, i) in ship.slots" :key="`s${ship.rosterId}_s${i}`">{{slot||''}}</span>
+            <span class="slot" v-for="(slot, i) in shipSlots()" :key="`s${ship.rosterId}_s${i}`">{{ slot ||''}}</span>
         </div>
         <div class="slots extra">
             <span class="slot extra" v-if="ship.ex_item !== 0"></span>
@@ -46,8 +46,12 @@
                     return "kce-ship-level-b";
                 }
                 return "";
-            }
+            },
         },
-        methods: {}
+        methods: {
+            shipSlots(){
+                return this.ship.slots.slice(0,this.ship.slotnum);
+            }
+        }
     }
 </script>

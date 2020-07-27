@@ -105,6 +105,9 @@
         background: var(--color-complement-3);
         > div{
           font-size: 15px;
+          &.slots{
+            justify-content: center;
+          }
         }
 
         .active{
@@ -119,6 +122,9 @@
         justify-content: center;
         line-height: 25px;
         font-size: 13px;
+        &.slots{
+          justify-content: start;
+        }
       }
       display: flex;
       flex-direction: row;

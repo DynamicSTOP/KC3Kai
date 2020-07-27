@@ -83,13 +83,13 @@
                     {class: 'lvl', sortBy: 'level', text: 'LvL'},
                     {class: 'morale', sortBy: 'morale', text: ';)'},
                     {class: 'hp', sortBy: 'hp', text: 'HP'},
-                    {class: 'fp', sortBy: 'fp', text: 'FP'},
-                    {class: 'tp', sortBy: 'tp', text: 'TP'},
-                    {class: 'aa', sortBy: 'aa', text: 'AA'},
-                    {class: 'ar', sortBy: 'ar', text: 'AR'},
-                    {class: 'as', sortBy: 'as', text: 'ASW'},
-                    {class: 'ev', sortBy: 'ev', text: 'EV'},
-                    {class: 'los', sortBy: 'ls', text: 'LoS'},
+                    {class: 'fp', sortBy: 'firepower', text: 'FP'},
+                    {class: 'tp', sortBy: 'torpedo', text: 'TP'},
+                    {class: 'aa', sortBy: 'antiair', text: 'AA'},
+                    {class: 'ar', sortBy: 'armor', text: 'AR'},
+                    {class: 'as', sortBy: 'antisub', text: 'ASW'},
+                    {class: 'ev', sortBy: 'evasion', text: 'EV'},
+                    {class: 'los', sortBy: 'levelofsight', text: 'LoS'},
                     {class: 'lk', sortBy: 'lk', text: 'LK'},
                     {class: 'night', sortBy: 'night', text: 'Night'},
                     {class: 'slots', sortBy: 'slots', text: 'Slots'},
@@ -188,8 +188,12 @@
                     this.sortByInverse *= -1;
                 } else {
                     this.sortBy = type;
-                    if (["lvl", "fp", "tp", "ar", "aa", "night", "ev", "as", "hp", "lk", "id", "masterId"].indexOf(type) !== -1) this.sortByInverse = -1;
-                    else this.sortByInverse = 1;
+                    if (["lvl", "firepower", "torpedo", "armor", "aa", "night", "evasion", "antisub",
+                         "hp", "lk", "id", "masterId"].indexOf(type) !== -1) {
+                        this.sortByInverse = -1;
+                    } else {
+                        this.sortByInverse = 1;
+                    }
                 }
 
             },
@@ -201,11 +205,24 @@
                 for (let i in KC3ShipManager.list) {
                     if (KC3ShipManager.list.hasOwnProperty(i) && i.startsWith('x')) {
                         const ship = KC3ShipManager.list[i];
-                        ship.sortno = ship.master().api_sort_id;
-                        ship.stypem = ship.master().api_stype;
+                        const master = ship.master();
+                        ship.sortno = master.api_sort_id;
+                        ship.stypem = master.api_stype;
                         ship.stype = KC3Meta.stype(ship.stypem);
                         ship.stypen = shipTypes.indexOf(ship.stype);
-                        ship.night = ship.fp[0] + ship.tp[0];
+
+
+                        ship.firepower = master.api_houg[0] + ship.mod[0];
+                        ship.torpedo = master.api_raig[0] + ship.mod[1];
+                        ship.night = ship.firepower + ship.torpedo;
+                        ship.antiair = master.api_tyku[0] + ship.mod[2];
+                        ship.armor = master.api_souk[0] + ship.mod[3];
+
+                        ship.antisub = ship.nakedAsw();
+                        ship.evasion = ship.ev[0] - ship.equipmentTotalStats('houk', true);
+                        ship.levelofsight = ship.ls[0] - ship.equipmentTotalStats('saku', true);
+
+                        if(ship.rosterId===3516) console.log(ship);
                         this.ships.push(ship);
                     }
                 }
