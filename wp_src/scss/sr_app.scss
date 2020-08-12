@@ -1,0 +1,34 @@
+@import "palette";
+@import "mixins";
+
+@import "navbar";
+  @import "profile";
+@import "ships";
+
+html{
+  height:100%;
+}
+
+body {
+  background: var(--color-primary-4);
+  margin: 0;
+  height:100%;
+}
+
+article {
+  padding-left:10px;
+  flex:1;
+  height:100%;
+  overflow: auto;
+}
+
+.sr_app{
+  @include flex-row();
+  width:100%;
+  &.limited{
+    width:1200px;
+  }
+  margin: 0 auto;
+  height:100%;
+  background: rgba(0,0,0,0.1);
+}

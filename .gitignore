@@ -48,3 +48,6 @@ src.pem
 
 # Linux
 *~
+
+# compiled assets
+src/pages/strategyEx/assets/*

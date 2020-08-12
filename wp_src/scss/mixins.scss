@@ -1,0 +1,27 @@
+@mixin flex-col() {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+@mixin flex-row() {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+@mixin text-shadow($shadow:#000) {
+  text-shadow: 0 1px 1px $shadow, 0 -1px 1px $shadow, 1px 0 1px $shadow, -1px 0 1px $shadow;
+}
+
+.table {
+  display: table;
+
+  > * {
+    display: table-row;
+
+    > * {
+      display: table-cell;
+    }
+  }
+}
